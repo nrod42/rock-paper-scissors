@@ -1,0 +1,34 @@
+html {
+    height: 100%;
+}
+
+body {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    min-height: 100%;
+}
+
+.allChoices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+}
+.playerChoice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.computerChoice {
+    margin-left: 100px;
+}
+.choiceContainer {
+    padding: 10px;
+}

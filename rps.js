@@ -81,4 +81,3 @@ function game() {
     return 'You Lose!\n' + score;
 }
 
-alert(game());
