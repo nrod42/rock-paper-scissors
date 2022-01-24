@@ -48,36 +48,51 @@ function playRound(playerSelection, computerSelection){
     return result;
 }
 
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+const body = document.querySelector('body');
+const scoreboard = document.createElement('div')
+body.appendChild(scoreboard);
+
 let win = 0;
 let lose = 0;
 let tie = 0;
-let round = 0;
+let result;
 let score;
 
-function game() {
-    
-    while (round < 5) {
-        playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
-        computerSelection = computerPlay();
-
-        roundResult = playRound(playerSelection,computerSelection)
-        switch (roundResult) {
-            case 'win':
-                win++;
-                break;
-            case 'lose':
-                lose++;
-                break;
-            case 'tie':
-                tie++
-                break;
-        }
-        //console.log(playerSelection,computerSelection)
-        round++
+function roundResult(e) {
+    playerSelection = e.target.className;
+    computerSelection = computerPlay();
+    document.getElementById("compIcon").src = `./img/${computerSelection}.png`;
+    result = playRound(playerSelection,computerSelection);
+    if (result === 'win') {
+        win++;
+    }
+    if (result === 'lose') {
+        lose++;
+    }
+    if (result === 'tie') {
+        tie++;
+    }
+    score = 'Wins: ' + win + ' ' + 'Losses: ' + lose + ' ' + 'Ties: ' + tie;
+    scoreboard.textContent = score;
+    if (win >= 5) {
+        scoreboard.textContent = 'Congrats, Youve Won!'
+        win = 0;
+        lose = 0;
+        tie = 0;
+    }
+    if (lose >= 5) {
+        scoreboard.textContent = 'Oof, sorry you lost!'
+        win = 0;
+        lose = 0;
+        tie = 0;
     }
 
-    score = 'Wins: ' + win + ' ' + 'Losses: ' + lose + ' ' + 'Ties: ' + tie;
-    if (win > lose) return 'You Win!\n' + score;
-    return 'You Lose!\n' + score;
+     
 }
 
+rock.addEventListener('click', roundResult);
+paper.addEventListener('click', roundResult);
+scissors.addEventListener('click', roundResult);
